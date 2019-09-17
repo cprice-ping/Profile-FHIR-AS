@@ -1,0 +1,474 @@
+{
+    "version": "5.3.0.9",
+    "data": {
+        "accessTokenValidators": [
+            {
+                "className": "com.pingidentity.pa.accesstokenvalidators.JwksEndpoint",
+                "id": 2,
+                "name": "P14C Tokens (CC)",
+                "configuration": {
+                    "description": null,
+                    "path": "${PA_ATV_JWKS}",
+                    "subjectAttributeName": "client_id",
+                    "issuer": "${PA_TOKEN_ISSUER}",
+                    "audience": "${PA_TOKEN_AUD}"
+                }
+            },
+            {
+                "className": "com.pingidentity.pa.accesstokenvalidators.JwksEndpoint",
+                "id": 3,
+                "name": "P14C Tokens (User)",
+                "configuration": {
+                    "description": null,
+                    "path": "${PA_ATV_JWKS}",
+                    "subjectAttributeName": "sub",
+                    "issuer": "${PA_TOKEN_ISSUER}",
+                    "audience": "${PA_TOKEN_AUD}"
+                }
+            }
+        ],
+        "adminAuthBasic": {
+            "enabled": true
+        },
+        "adminAuthWebSession": {
+            "sessionPollIntervalInSeconds": 10,
+            "expirationWarningInMinutes": 1,
+            "idleTimeoutInMinutes": 30,
+            "sessionTimeoutInMinutes": 240,
+            "audience": "PingAccessUI",
+            "cookieDomain": null,
+            "cookieType": "Encrypted"
+        },
+        "adminConfig": {
+            "hostPort": "localhost:9090",
+            "httpProxyId": 0,
+            "httpsProxyId": 0
+        },
+        "applications": [
+            {
+                "id": 1,
+                "enabled": true,
+                "agentCacheInvalidatedResponseDuration": 900,
+                "agentCacheInvalidatedExpiration": 1568218650095,
+                "lastModified": 1568217750095,
+                "requireHTTPS": true,
+                "name": "P14C Mgmt API",
+                "description": "{\n\"ping_ai\": true,\n\"ping_host\": \"*\",\n\"ping_url\": \"/mgmt\",\n\"ping_login\": \"\",\n\"ping_cookie\": \"\",\n\"apikey_qs\": \"\",\n\"apikey_header\": \"\",\n\"ping_decoy\": false,\n\"oauth2_access_token\": true,\n\"ping_blocking\": true\n}",
+                "manualOrderingEnabled": false,
+                "resourceOrder": [],
+                "applicationType": "API",
+                "defaultAuthType": "API",
+                "spaSupportEnabled": false,
+                "destination": "Site",
+                "contextRoot": "/mgmt",
+                "realm": null,
+                "caseSensitivePath": false,
+                "webSessionId": 0,
+                "siteId": 1,
+                "agentId": 0,
+                "virtualHostIds": [
+                    3
+                ],
+                "identityMappingIds": {
+                    "Web": 0,
+                    "API": 0
+                },
+                "accessValidatorId": 3,
+                "policy": {
+                    "Web": [],
+                    "API": [
+                        {
+                            "type": "Rule",
+                            "id": 33
+                        },
+                        {
+                            "type": "Rule",
+                            "id": 1
+                        }
+                    ]
+                }
+            },
+            {
+                "id": 2,
+                "enabled": true,
+                "agentCacheInvalidatedResponseDuration": 900,
+                "agentCacheInvalidatedExpiration": 1568222918671,
+                "lastModified": 1568222018671,
+                "requireHTTPS": true,
+                "name": "P14C Authentication API",
+                "description": "{\n\"ping_ai\": true,\n\"ping_host\": \"*\",\n\"ping_url\": \"/logon\",\n\"ping_login\": \"\",\n\"ping_cookie\": \"ST\",\n\"apikey_qs\": \"\",\n\"apikey_header\": \"\",\n\"ping_decoy\": false,\n\"oauth2_access_token\": false,\n\"ping_blocking\": true\n}",
+                "manualOrderingEnabled": false,
+                "resourceOrder": [],
+                "applicationType": "API",
+                "defaultAuthType": "API",
+                "spaSupportEnabled": true,
+                "destination": "Site",
+                "contextRoot": "/logon",
+                "realm": null,
+                "caseSensitivePath": false,
+                "webSessionId": 0,
+                "siteId": 2,
+                "agentId": 0,
+                "virtualHostIds": [
+                    3
+                ],
+                "identityMappingIds": {
+                    "Web": 0,
+                    "API": 0
+                },
+                "accessValidatorId": 0,
+                "policy": {
+                    "Web": [],
+                    "API": []
+                }
+            }
+        ],
+        "authTokenMgmt": {
+            "keyRollEnabled": true,
+            "keyRollPeriodInHours": 24,
+            "issuer": "PingAccessAuthToken",
+            "signingAlgorithm": "P-256"
+        },
+        "availabilityProfiles": [
+            {
+                "className": "com.pingidentity.pa.ha.availability.ondemand.OnDemandAvailabilityPlugin",
+                "id": 1,
+                "name": "Default Availability Profile",
+                "configuration": {
+                    "connectTimeout": 10000,
+                    "pooledConnectionTimeout": -1,
+                    "readTimeout": -1,
+                    "maxRetries": 2,
+                    "retryDelay": 250,
+                    "failedRetryTimeout": 60,
+                    "failureHttpStatusCodes": []
+                }
+            }
+        ],
+        "engineListeners": [
+            {
+                "id": 1,
+                "name": "Default Engine Listener",
+                "port": 443,
+                "secure": true,
+                "trustedCertificateGroupId": 0
+            }
+        ],
+        "httpHostSource": {
+            "headerNameList": [
+                "X-Forwarded-Host",
+                "Host"
+            ],
+            "listValueLocation": "LAST"
+        },
+        "httpIpSource": {
+            "headerNameList": [
+                "X-Forwarded-For"
+            ],
+            "listValueLocation": "LAST",
+            "fallbackToLastHopIp": true
+        },
+        "httpProtocolSource": {
+            "headerName": "X-Forwarded-Proto"
+        },
+        "httpsListeners": [
+            {
+                "id": 1,
+                "name": "ADMIN",
+                "keyPairId": 1,
+                "useServerCipherSuiteOrder": true
+            },
+            {
+                "id": 2,
+                "name": "AGENT",
+                "keyPairId": 2,
+                "useServerCipherSuiteOrder": true
+            },
+            {
+                "id": 3,
+                "name": "ENGINE",
+                "keyPairId": 3,
+                "useServerCipherSuiteOrder": true
+            }
+        ],
+        "keyPairs": [
+            {
+                "id": 1,
+                "alias": "Generated: ADMIN",
+                "fileData": "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",
+                "password": {
+                    "encryptedValue": "OBF:JWE:eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiRzh3Zml0Y2t4RDNXNHl2VyJ9..6DDLkrh0b7kFmLBcSSzvXA.0P3AEZ6WBd8PBNJyXL21TNmXnBOWoHUmWG2LivIuIAvPp1TdzZ5cZAaySfJt2nsw.cnabRp91K4OYRFD8RuCVVw"
+                }
+            },
+            {
+                "id": 2,
+                "alias": "Generated: AGENT",
+                "fileData": "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",
+                "password": {
+                    "encryptedValue": "OBF:JWE:eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiRzh3Zml0Y2t4RDNXNHl2VyJ9..tJsBUzP4qX-mCy-_vgD5jA.mKdxTnglEfr5zMs2USAEUA5h0FzgRgaGLxrzcaCA1qi0yryivK6f-wCryqjbfmQf.iIlbh-uRBDYrSu1psy_PJw"
+                }
+            },
+            {
+                "id": 3,
+                "alias": "Generated: ENGINE",
+                "fileData": "MIIJuQIBAzCCCXIGCSqGSIb3DQEHAaCCCWMEgglfMIIJWzCCBX8GCSqGSIb3DQEHAaCCBXAEggVsMIIFaDCCBWQGCyqGSIb3DQEMCgECoIIE+zCCBPcwKQYKKoZIhvcNAQwBAzAbBBQSBhP4gTSXzmeHk9Xj5P9JV18eXgIDAMNQBIIEyOHbbsAIAQs9vpKWHx9fWdVlfifcRZGtIguz3dOuDaXx82x6LFDNA/IPlazY8hCLg99k6049uQ8ATFFIEJKMgVBgOeZ7+ILmv1JOnXRTUKs7FoydFRWOu0qBa1XiTigi+WvBuFDWQOaYDINotYyHBP28pJk9dk1a8m9yXXsHz/fQIITzydi7T6COPEc77JMCwPTSHUQb1rCqwFaKgvi2SSUM0KQpeYTwVFnSbwC8PiQtonoki4ue0ALX2PHYNzrQTSJNDZbyOtRngqB0afKZQdfYESUQPdA1vZ3YnFZ+JgPMx8DPcZm5T4B5OVzQhoxzeA0Nieq0BXHZ9hPk/3w1KYqlDPMVvyyo+rF9JkL6rgpRAwKZitWfr7WTsifdobCBr+z+TIZH4CG8UmFqI6SFNR3FzFqy6rg+hw1sVig3X/g2wZr9JpKp1whj0WkG4MAjoxpPc+Ah5NIrz2PWRYJW7oOOkvxeOGkIYEl/5rqB1w9UKSYxDdaaC0cyInwzSkwKKPlcIsLmBEIO0yvF3rgIgqOx6PlDMabvPrVc4eHQoquJTBabCacneLebOtB7Nd/5joTr1yvkgMnH/7EF+I0HxQxuA+7H0qjdtSZxNkx7FclIQOX7s/OOeQpIz5+fbuVkScDxwwimeGsI75SjIFqtt8kpTyI64zD8/sy+LaguMM/poT38KuAImDgMcngxwYzfkyiG88JFKDXwpX6QoycUa91LfwBXIYbMKQSLQhtZZn1Ivphhn5D1GE4HsNjo3YDQBJOIIKp2dd4CStcXgQ1fd88Yx4qohlkpZ2vsiQhdhpkh0t9wg+nPXB3YvjqbsykqqGWYqfkBQwkiCqD0K+BaZDor5VHLKlRom6wLSoE0uj9fksRbIfYW54w8I5ha8xe3IAeegr7vL5x30eqV/yTKsrsr1lBdqtPOWUNqRO9f9+jdHYvKfhHIgCsf9ZzUvu/SHwmQvKHXqBpvlq6Vh/V9vMdAxX0XeeFpl5EK8Q7T2un9DmHgoCjuHi2iHV3DDm3wj7R5bMP410Jw9MkiGBbtocP2jBef6w8YikUbDEWMfbug5eeCWwkZDJoxP/CR+KSqx3kfLx3osjmDziyutM4uEiPV8CFfxJz5Qu+UL+aYLMI+We27ePtp/N3lSYZjkv9uiHBgDKf4ujQrIqq19cNacBmSxlabGarB3mZikSaSdQ42gTFuS2G6WB6fDtQ1sdWZzEkzI4Jyc3wazHY3AAGsZeyXM3yImRsGoRM4Z4uqS0/Tl5C7JqFQubvsLExOeMqnpyvg3U5+H5QpGa/TpquS4hGqUrBmuyPKGiNWLxABJxGwJZZLzL3TE0wtgWEjvtXFXYhliPWFk3zuMsbvc1ZE3ufsqa32/RKR5zm79KN0glLIhETo0zc8wfyihz4yD4tzEXwiMkgXBkkyiHxLUjkuhot+fJQqJqzaUSdOKiZvgril8smDxuc+rqZLlzu53fhGQSuB4K96UfcQuC5IR9GabZnoE6jH1Z+1awSefJ2Y4hIwuDECalC9lq3ZPOtpRNBR1amrjUURo2KTE07j/kmwLNTfs5IZJZgagG5Dr0E1Wl5icDNIOPIkL9ltV46wZq/taUOEVTmuBtQd0EkEaHzOlnNPexQMZ3RyizFWMDEGCSqGSIb3DQEJFDEkHiIAZwBlAG4AZQByAGEAdABlAGQAOgAgAGUAbgBnAGkAbgBlMCEGCSqGSIb3DQEJFTEUBBJUaW1lIDE1NjgyMzE3NjkzNDYwggPUBgkqhkiG9w0BBwagggPFMIIDwQIBADCCA7oGCSqGSIb3DQEHATApBgoqhkiG9w0BDAEGMBsEFLQcNmq3ZOi1GApuWd8YsCLh3DCUAgMAw1CAggOA1X8827e2bqqaAtzbadGkUPztDSwH6XmUvm12jaJhAm7ZgRChmDxX3Mz2oUxHAGK3Mz11qxGUD6A3GXOPFjMKQi3+eXuzGkE2WhoYKjgPib0eUtVYwZeGXzk/avT9P2H5ts0ps8sUfYefpokYQjF03FTjd4Ja6mEdwaiE2NYNeQ/X7Ac6OmOUNq+/N59M3o4mJ6vThrFqRHY1YpsRrFI5//p6qw1QId6a1qM07s6tM8nKCb6iX9v8W2Yn3INLdqHu0uKe6bHcOEb0QQCja17rDHW6fykpJ0ippeu+nweGqDSuyy+5vJvFhOXDTpRpJPzSwhLwE8AsMW+qcDZjpGPwPKUoKB7hJBC9DwiB4Txp9m3ln3FmZrBCJYDDG3Ik5zjO/dvQoHfRL4kk5i5RB4pCLEYpZj4v5SzjkEOc/y5UBcUFDk7TYJqy9EDl+rF12mNC625saufAADcy1LL3trvZVSRTfVs5iTs3OTuV4wSqaC09qOsuXCIt9Di31AWy4GYG3AvKTbGVwFbLI2QBnX5j6UidZm/ADSWxGxR+rNERnj7Rt7nEWlZeQAMHQ/aBJoJHeCUbTxpuacTHd43yMHv//F2cdySJwDsOqBOXPQ3R1NGZov3M5LsdPhnSL7s2jkItH1fULuZMxO+xiYVkQv/er63vJDUzGjp27aJug1YNONxVHWXClyPYvmuFBrumC7sjv8OSG3fA14/M0IaZjLTwnnVxB2Wv7wMNbRV0iF6tjVqKD+RAYDYiG32bM3F6uWRVHxo48XgSdLV2lQ2ln1IpFIHVIiesM0yX3c/M6p4ahM6TY3KoE5cj4/1YPViRcAwdqPQFoJJYRjZh4xXJorDKBS+SQahfVwLGQv9yvesjRqFDixc4QF5JtZpB911ABI5LidYRL0/M1layVlSbERF2KbT1AyQuosz4XRr06r/Qi0EfYRT94QIW/nKhGDR4ac/rg6E5vsxEKveegLcdCIoLyqILOrDadIhCpkP+o3EWBpgPq14t+Cmsk6fLWMigBkvgspUgFTfsOou5jQrHsanHzTSe9S+ryXQ0A/Vf+9Wf5fCDsr3/R8tzuI2lyKub9YvmaQd03dWakMwA763FpEZuMhkP5k1pADZGa48ycdDBqszrwF8mQ2QpbpRcD+xiAccw0Z2zLuMPHvx1a0uAR0huXBb/DY989wukaR+NCKJfoWswPjAhMAkGBSsOAwIaBQAEFBspYC58eU//YZfq8zAuT3rxrX3BBBSV/KW+1uDP27xG+KvaTi+0WpDhRgIDAYag",
+                "password": {
+                    "encryptedValue": "OBF:JWE:eyJhbGciOiJkaXIiLCJlbmMiOiJBMTI4Q0JDLUhTMjU2Iiwia2lkIjoiRzh3Zml0Y2t4RDNXNHl2VyJ9..2Li2D41a4QCEwj3uoVPI_g.E-bicmt8G8_bYdxV-wZpQW3lZsuddIfWV04NZTZhM3t7Cy7TmoKrybNE8zE58PGt.HvQG3RayzNnQHbMh__xKsg"
+                }
+            }
+        ],
+        "loadBalancingStrategies": [
+            {
+                "className": "com.pingidentity.pa.ha.lb.roundrobin.CookieBasedRoundRobinPlugin",
+                "id": 1,
+                "name": "Default Round Robin Strategy",
+                "configuration": {
+                    "stickySessionEnabled": true,
+                    "cookieName": "PA_S"
+                }
+            }
+        ],
+        "oauthKeyMgmt": {
+            "keyRollEnabled": true,
+            "keyRollPeriodInHours": 24
+        },
+        "pingOne": {
+            "description": null,
+            "issuer": "${PA_TOKEN_ISSUER}",
+            "trustedCertificateGroupId": 2,
+            "useProxy": false
+        },
+        "rejectionHandlers": [
+            {
+                "className": "com.pingidentity.pa.policy.rejectionhandler.errortemplate.ErrorTemplateRejectionHandlerPlugin",
+                "id": 1,
+                "name": "Default Web Rejection Handler",
+                "configuration": {
+                    "responseCode": 403,
+                    "templateFile": "policy.error.page.template.html",
+                    "contentType": "HTML"
+                }
+            },
+            {
+                "className": "com.pingidentity.pa.policy.rejectionhandler.errortemplate.ErrorTemplateRejectionHandlerPlugin",
+                "id": 2,
+                "name": "Default API Rejection Handler",
+                "configuration": {
+                    "responseCode": 403,
+                    "templateFile": "oauth.error.json",
+                    "contentType": "JSON"
+                }
+            },
+            {
+                "className": "com.pingidentity.pa.policy.rejectionhandler.errortemplate.ErrorTemplateRejectionHandlerPlugin",
+                "id": 3,
+                "name": "Default Rate Limiting Rejection Handler",
+                "configuration": {
+                    "responseCode": 429,
+                    "templateFile": "oauth.error.json",
+                    "contentType": "JSON"
+                }
+            }
+        ],
+        "reservedApplication": {
+            "contextRoot": "/pa"
+        },
+        "resources": [
+            {
+                "id": 1,
+                "name": "Root Resource",
+                "methods": [
+                    "*"
+                ],
+                "pathPatterns": [
+                    {
+                        "pattern": "/*",
+                        "type": "WILDCARD"
+                    }
+                ],
+                "pathPrefixes": [
+                    "/*"
+                ],
+                "auditLevel": "ON",
+                "anonymous": false,
+                "enabled": true,
+                "unprotected": false,
+                "policy": {
+                    "Web": [],
+                    "API": []
+                },
+                "defaultAuthTypeOverride": null,
+                "rootResource": true,
+                "applicationId": 1
+            },
+            {
+                "id": 2,
+                "name": "Root Resource",
+                "methods": [
+                    "*"
+                ],
+                "pathPatterns": [
+                    {
+                        "pattern": "/*",
+                        "type": "WILDCARD"
+                    }
+                ],
+                "pathPrefixes": [
+                    "/*"
+                ],
+                "auditLevel": "ON",
+                "anonymous": false,
+                "enabled": true,
+                "unprotected": false,
+                "policy": {
+                    "Web": [],
+                    "API": []
+                },
+                "defaultAuthTypeOverride": null,
+                "rootResource": true,
+                "applicationId": 2
+            }
+        ],
+        "rules": [
+            {
+                "className": "com.pingidentity.intelligence.PingIntelligence",
+                "id": 1,
+                "name": "PI Sideband",
+                "supportedDestinations": [
+                    "Site",
+                    "Agent"
+                ],
+                "configuration": {
+                    "aseService": "5221c247-3831-4c10-8fbc-e0bfb58aa218",
+                    "aseBackupService": "5221c247-3831-4c10-8fbc-e0bfb58aa218",
+                    "aseauthtoken": null,
+                    "errorResponseCode": 403,
+                    "errorResponseStatusMsg": "Forbidden",
+                    "errorResponseTemplateFile": "policy.error.page.template.html",
+                    "errorResponseContentType": "text/html; charset=UTF-8"
+                }
+            },
+            {
+                "className": "com.pingidentity.pa.policy.rewrite.SynapseURLRewritePolicyInterceptor",
+                "id": 33,
+                "name": "P14C - Mgmt - RewriteURL",
+                "supportedDestinations": [
+                    "Site"
+                ],
+                "configuration": {
+                    "mapFrom": "^/mgmt(.*)",
+                    "mapTo": "$1"
+                }
+            }
+        ],
+        "sites": [
+            {
+                "id": 1,
+                "name": "P14C Mgmt API",
+                "targets": [
+                    "api.pingone.com:443"
+                ],
+                "secure": true,
+                "trustedCertificateGroupId": 2,
+                "sendPaCookie": true,
+                "useTargetHostHeader": true,
+                "keepAliveTimeout": 0,
+                "maxConnections": -1,
+                "maxWebSocketConnections": -1,
+                "siteAuthenticatorIds": [],
+                "skipHostnameVerification": false,
+                "expectedHostname": null,
+                "availabilityProfileId": 1,
+                "loadBalancingStrategyId": 0,
+                "useProxy": false
+            },
+            {
+                "id": 2,
+                "name": "P14C AuthN API",
+                "targets": [
+                    "auth.pingone.com:443"
+                ],
+                "secure": true,
+                "trustedCertificateGroupId": 2,
+                "sendPaCookie": true,
+                "useTargetHostHeader": true,
+                "keepAliveTimeout": 0,
+                "maxConnections": -1,
+                "maxWebSocketConnections": -1,
+                "siteAuthenticatorIds": [],
+                "skipHostnameVerification": false,
+                "expectedHostname": null,
+                "availabilityProfileId": 1,
+                "loadBalancingStrategyId": 0,
+                "useProxy": false
+            }
+        ],
+        "thirdPartyServices": [
+            {
+                "id": "5221c247-3831-4c10-8fbc-e0bfb58aa218",
+                "targets": [
+                    "pi-ase:8443"
+                ],
+                "name": "PI ASE",
+                "secure": true,
+                "trustedCertificateGroupId": 2,
+                "maxConnections": -1,
+                "skipHostnameVerification": false,
+                "expectedHostname": "test.ase.pi",
+                "availabilityProfileId": 1,
+                "loadBalancingStrategyId": 0,
+                "useProxy": false,
+                "hostValue": null
+            }
+        ],
+        "tokenProvider": {
+            "useThirdParty": false,
+            "type": "PingOneForCustomers"
+        },
+        "unknownResources": {
+            "errorStatusCode": 403,
+            "errorTemplateFile": "general.error.page.template.html",
+            "errorContentType": "HTML",
+            "agentDefaultMode": "DENY",
+            "agentDefaultCacheTTL": 900,
+            "auditLevel": "ON"
+        },
+        "virtualHosts": [
+            {
+                "id": 1,
+                "host": "localhost",
+                "port": 3000,
+                "agentResourceCacheTTL": 900,
+                "keyPairId": 0,
+                "trustedCertificateGroupId": 0
+            },
+            {
+                "id": 2,
+                "host": "*",
+                "port": 3000,
+                "agentResourceCacheTTL": 900,
+                "keyPairId": 0,
+                "trustedCertificateGroupId": 0
+            },
+            {
+                "id": 3,
+                "host": "*",
+                "port": 443,
+                "agentResourceCacheTTL": 900,
+                "keyPairId": 0,
+                "trustedCertificateGroupId": 0
+            }
+        ],
+        "webSessionMgmt": {
+            "keyRollEnabled": true,
+            "keyRollPeriodInHours": 24,
+            "issuer": "PingAccess",
+            "signingAlgorithm": "P-256",
+            "cookieName": "PA",
+            "sessionStateCookieName": "PA_STATE",
+            "updateTokenWindowInSeconds": 60,
+            "encryptionAlgorithm": "A128CBC-HS256",
+            "nonceCookieTimeToLiveInMinutes": 5
+        }
+    }
+}
