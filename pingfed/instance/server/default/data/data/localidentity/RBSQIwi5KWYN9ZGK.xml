@@ -35,7 +35,7 @@
     <loc:datastore-mapping>
         <loc:DataSource Description="" Type="LDAP" DataSourceId="LDAP-D803C87FAB2ADFB4B0A947B64BA6F0C6093A5CA3">
             <urn:Parameter Name="create_pattern" Value="uid=" xmlns:urn="urn:sourceid.org:saml2:metadata-extension:v2"/>
-            <urn:Parameter Name="search_base" Value="ou=people,dc=example,dc=com" xmlns:urn="urn:sourceid.org:saml2:metadata-extension:v2"/>
+            <urn:Parameter Name="search_base" Value="ou=people,o=anyhealth.org" xmlns:urn="urn:sourceid.org:saml2:metadata-extension:v2"/>
             <urn:Parameter Name="search_scope" Value="ONELEVEL_SCOPE" xmlns:urn="urn:sourceid.org:saml2:metadata-extension:v2"/>
             <urn:Parameter Name="object_class" Value="inetOrgPerson" xmlns:urn="urn:sourceid.org:saml2:metadata-extension:v2"/>
         </loc:DataSource>
