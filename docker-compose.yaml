@@ -42,6 +42,7 @@ services:
       - SERVER_PROFILE_PARENT=BASELINE
       - SERVER_PROFILE_BASELINE_URL=https://github.com/pingidentity/pingidentity-server-profiles.git
       - SERVER_PROFILE_BASELINE_PATH=baseline/pingdirectory
+      - USER_BASE_DN=o=anyhealth.org
     ports:
       - 1636:636
       - 1443:443
