@@ -1,20 +1,20 @@
 version: "3.1"
 
 services:
-  pingaccess:
-    image: pingidentity/pingaccess:5.3.0-edge
-    env_file:
-      - ~/.pingidentity/devops
-    environment: 
-      - SERVER_PROFILE_URL=https://github.com/cprice-ping/Profile-FHIR-AS.git
-      - SERVER_PROFILE_PATH=pingaccess
-      - VERBOSE=false
-    ports:
-      - 443:443
-      - 9000:9000
-    networks:
-      - pingnet-dmz
-      - pingnet
+  # pingaccess:
+  #  image: pingidentity/pingaccess:5.3.0-edge
+  #  env_file:
+  #    - ~/.pingidentity/devops
+  #  environment: 
+  #    - SERVER_PROFILE_URL=https://github.com/cprice-ping/Profile-FHIR-AS.git
+  #    - SERVER_PROFILE_PATH=pingaccess
+  #    - VERBOSE=false
+  #  ports:
+  #    - 443:443
+  #    - 9000:9000
+  #  networks:
+  #    - pingnet-dmz
+  #    - pingnet
 
   pingfederate:
     image: pingidentity/pingfederate:${PING_IDENTITY_DEVOPS_TAG}
