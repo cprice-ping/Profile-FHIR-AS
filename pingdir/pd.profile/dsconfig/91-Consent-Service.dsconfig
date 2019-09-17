@@ -5,4 +5,4 @@ dsconfig set-http-servlet-extension-prop --extension-name Consent --set "access-
 
 dsconfig create-consent-definition --definition-name FHIRApp --set "display-name:FHIR App Consent" --set "description:This definition is use to allow access to the designated PatientID from this FHIR Application"
 
-dsconfig create-consent-definition-localization --definition-name FHIRApp --localization-name en --set version:1.0 --set "title-text:FHIR App Access" --set 'data-text:Allow FHIR App to access data on the SUBJECT record' --set 'purpose-text:Used to allow Roles or Individuals to have access to all or specific elements of the SUBJECT's medical record'
+dsconfig create-consent-definition-localization --definition-name FHIRApp --localization-name en --set version:1.0 --set "title-text:FHIR App Access" --set 'data-text:Allow FHIR App to access data on the SUBJECT record' --set 'purpose-text:Used to allow Roles or Individuals to have access to all or specific elements of the SUBJECT\'s medical record'
