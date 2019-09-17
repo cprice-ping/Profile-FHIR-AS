@@ -54,3 +54,4 @@ services:
 
 networks:
     pingnet:
+    pingnet-dmz:
