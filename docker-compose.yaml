@@ -1,7 +1,7 @@
 version: "3.1"
 
 services:
-   pingaccess:
+  pingaccess:
     image: pingidentity/pingaccess:5.3.0-edge
     env_file:
       - ~/.pingidentity/devops
@@ -26,6 +26,7 @@ services:
       - SERVER_PROFILE_PATH=pingfed
       - PF_BASE_URL=https://localhost:9031
       - PF_LOG_LEVEL=DEBUG
+      - USER_BASE_DN=o=anyhealth.org
     ports:
       - 9031:9031
       - 9999:9999
@@ -42,7 +43,7 @@ services:
     #  - SERVER_PROFILE_PARENT=BASELINE
     #  - SERVER_PROFILE_BASELINE_URL=https://github.com/pingidentity/pingidentity-server-profiles.git
     #  - SERVER_PROFILE_BASELINE_PATH=baseline/pingdirectory
-    #  - USER_BASE_DN=o=anyhealth.org
+      - USER_BASE_DN=o=anyhealth.org
     ports:
       - 1636:636
       - 1443:443
