@@ -29,5 +29,5 @@
     --location ${LOCATION}  \
     --instanceName 'pingdirectory' 
     --no-prompt
-    --usePkcs12Keystore ${PING_SERVER_ROOT}/config/pingdirectory.p12
-    --keyStorePassword 2FederateM0re
+    --usePkcs12Keystore ${PING_SERVER_ROOT}/config/cpricedomain-wc.p12
+    --keyStorePassword P@ssword1
