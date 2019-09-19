@@ -27,7 +27,6 @@
     --httpsPort ${HTTPS_PORT} \
     --enableStartTLS \
     ${jvmOptions} \
-    ${certificateOptions} \
     ${encryptionOption} \
     --rootUserDN "${ROOT_USER_DN}" \
     --rootUserPasswordFile "${ROOT_USER_PASSWORD_FILE}" \
