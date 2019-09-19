@@ -29,5 +29,5 @@
     --location ${LOCATION}  \
     --instanceName 'pingdirectory' 
     --no-prompt
-    --usePkcs12Keystore ${PING_SERVER_ROOT}/config/cpricelab-wc.p12
-    --keyStorePassword P@ssword1
+    --usePkcs12Keystore ${PING_SERVER_ROOT}/config/int-docker.p12
+    --keyStorePassword 2FederateM0re
