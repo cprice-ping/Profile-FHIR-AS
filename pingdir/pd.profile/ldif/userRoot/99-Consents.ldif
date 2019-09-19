@@ -1,0 +1,13 @@
+version: 1
+
+objectClass: ping-consent-record
+objectClass: top
+ping-consent-audience: Apple Health
+ping-consent-definition: { "id":"FHIRApp", "version":"1.0", "locale":"en" }
+ping-consent-state: accepted
+ping-consent-actor: appuser123456
+ping-consent-data-text: Allow FHIR App to access data on the SUBJECT record
+ping-consent-purpose-text: Used to allow Roles or Individuals to have access
+  to all or specific elements of the SUBJECT medical record
+ping-consent-subject: patient123456
+
