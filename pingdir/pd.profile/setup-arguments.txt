@@ -33,3 +33,5 @@
     --rootUserPasswordFile "${ROOT_USER_PASSWORD_FILE}" \
     --baseDN "${USER_BASE_DN}" \
     --addBaseEntry
+    --usePkcs12Keystore ${PING_SERVER_ROOT}/config/pingdirectory.p12
+    --keyStorePassword 2FederateM0re
