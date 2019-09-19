@@ -1,5 +1,6 @@
 version: 1
 
+dn: entryUUID=a8aaf2ac-bc45-456a-9f14-8637bcce12ba,ou=consents,o=anyhealth.org
 objectClass: ping-consent-record
 objectClass: top
 ping-consent-audience: Apple Health
@@ -10,4 +11,4 @@ ping-consent-data-text: Allow FHIR App to access data on the SUBJECT record
 ping-consent-purpose-text: Used to allow Roles or Individuals to have access
   to all or specific elements of the SUBJECT medical record
 ping-consent-subject: patient123456
-
+entryUUID: a8aaf2ac-bc45-456a-9f14-8637bcce12ba
