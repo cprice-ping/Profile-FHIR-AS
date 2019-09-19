@@ -29,7 +29,6 @@
     ${jvmOptions} \
     --primeDB  \
     --location ${LOCATION}  \
-    --instanceName '${INSTANCE}'
     --encryptDataWithPassphraseFromFile ${ENCRYPTION_PASSPHRASE_FILE} \
     --no-prompt
     --usePkcs12Keystore ${PING_SERVER_ROOT}/config/pingdirectory.p12
