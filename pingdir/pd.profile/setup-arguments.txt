@@ -21,7 +21,6 @@
     --licenseKeyFile ${PING_SERVER_ROOT}/PingDirectory.lic  \
     --baseDN "${USER_BASE_DN}"  \
     --sampleData 1000  \
-    --localHostName '${HOST}'  \
     --skipPortCheck  \
     --ldapPort ${LDAP_PORT} --ldapsPort ${LDAPS_PORT} --httpsPort ${HTTPS_PORT}  \
     --rootUserDN "${ROOT_USER_DN}"  \
