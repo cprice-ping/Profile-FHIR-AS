@@ -666,6 +666,11 @@
             <!--<AppenderRef ref="SYSLOG" />-->
         </AsyncLogger>
 
+        <!-- Adding Logger for Groovy script -->
+        <AsyncLogger name="GroovyRule" level="DEBUG" additivity="false" includeLocation="false">
+            <AppenderRef ref="File"/>
+        </AsyncLogger>
+
         <!-- Logs details/ordering of service proxies -->
         <AsyncLogger name="com.pingidentity.pa.core.proxies.ProxyInfoLogger" level="INFO"/>
 
