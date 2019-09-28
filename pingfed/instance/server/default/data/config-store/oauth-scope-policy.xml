@@ -10,6 +10,9 @@
         <con:item name="profile">Profile access</con:item>
         <con:item name="admin">Admin permissions</con:item>
         <con:item name="email">Email Address access</con:item>
+        <con:item name="launch/patient">After login, ask the user to select a patient to which to give access</con:item>
+        <con:item name="offline_access">Provide a refresh token</con:item>
+        <con:item name="Patient/*.read">Give read access to all resources the patient has access to</con:item>
     </con:map>
     <con:list name="dynamic-common-scopes"/>
     <con:map name="scope-group-descriptions"/>
