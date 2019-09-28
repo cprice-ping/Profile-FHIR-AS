@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urn:Clients xmlns:urn="urn:pingidentity.com:pf:oauth:client">
-    <urn:Client client_id="FHIRApp" name="FHIR App" logo="" persistentGrantExpirationTime="365" enabled="true" persistentGrantExpirationTimeUnit="d" lastModified="2019-09-28T00:23:26.333Z" bypassApprovalPage="false" restrictScopes="false" jwksUri="" jwks="" clientAuthnType="NONE" enforceOneTimeJWT="false" isRequireSignedRequest="false">
+    <urn:Client client_id="FHIRApp" name="FHIR App" logo="" persistentGrantExpirationTime="365" enabled="true" persistentGrantExpirationTimeUnit="d" lastModified="2019-09-28T00:23:26.333Z" bypassApprovalPage="true" restrictScopes="false" jwksUri="" jwks="" clientAuthnType="NONE" enforceOneTimeJWT="false" isRequireSignedRequest="false">
         <urn:Description/>
         <urn:Grant type="authorization_code"/>
         <urn:RedirectUri>https://redirect.health.apple.com/HealthProviderLogin/</urn:RedirectUri>
