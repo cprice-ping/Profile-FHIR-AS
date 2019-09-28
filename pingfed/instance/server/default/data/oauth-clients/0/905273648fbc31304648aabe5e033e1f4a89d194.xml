@@ -4,7 +4,7 @@
         <urn:Description/>
         <urn:Grant type="authorization_code"/>
         <urn:Grant type="refresh_token"/>
-        <urn:RedirectUri>https://redirect.health.apple.com/HealthProviderLogin/</urn:RedirectUri>
+        <urn:RedirectUri>https://redirect.health.com/HealthProviderLogin/</urn:RedirectUri>
         <urn:RedirectUri>x-argonaut-app://HealthProviderLogin/</urn:RedirectUri>
         <urn:SupplementalInfo key="ALLOW_EXCLUSIVE_SCOPES" value="false"/>
         <urn:SupplementalInfo key="DEVICE_FLOW_SETTING" value="SERVER_DEFAULT"/>
