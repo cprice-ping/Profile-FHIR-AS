@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urn:Clients xmlns:urn="urn:pingidentity.com:pf:oauth:client">
+    <urn:Client client_id="PA WebSession" name="PingAccess WebSession" persistentGrantExpirationTime="0" enabled="true" lastModified="2019-06-27T20:21:30.795Z" bypassApprovalPage="true" restrictScopes="false" clientAuthnType="NONE" enforceOneTimeJWT="false" isRequireSignedRequest="false">
+        <urn:Description>This client is used to perform OIDC logons to PingAccess</urn:Description>
+        <urn:Grant type="implicit"/>
+        <urn:Grant type="authorization_code"/>
+        <urn:RedirectUri>https://pingaccess/pa/oidc/cb</urn:RedirectUri>
+        <urn:SupplementalInfo key="DEVICE_FLOW_SETTING" value="SERVER_DEFAULT"/>
+        <urn:SupplementalInfo key="PAIRWISE_USER_TYPE" value="false"/>
+        <urn:SupplementalInfo key="DEFAULT_ATM_ID" value="jwtHTML"/>
+        <urn:SupplementalInfo key="RESTRICT_RESPONSE_TYPES" value="false"/>
+        <urn:SupplementalInfo key="PING_ACCESS_LOGOUT_CAPABLE" value="false"/>
+        <urn:SupplementalInfo key="REQUIRE_PROOF_KEY_FOR_CODE_EXCHANGE" value="false"/>
+        <urn:SupplementalInfo key="ACCESS_SESSION_REVOCATION_API" value="false"/>
+        <urn:SupplementalInfo key="PERSISTENT_GRANT_IDLE_TIMEOUT_TYPE" value="SERVER_DEFAULT"/>
+        <urn:SupplementalInfo key="VALIDATE_USING_ALL_ELIGIBLE_ATMS" value="false"/>
+        <urn:SupplementalInfo key="ENABLED" value="true"/>
+        <urn:SupplementalInfo key="vnd.ping.policy_group_id" value="OIDCPolicyHTML"/>
+    </urn:Client>
+</urn:Clients>
