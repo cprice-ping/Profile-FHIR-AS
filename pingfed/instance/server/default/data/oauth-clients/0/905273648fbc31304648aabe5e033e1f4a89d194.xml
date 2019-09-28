@@ -3,6 +3,7 @@
     <urn:Client client_id="FHIRApp" name="FHIR App" logo="" persistentGrantExpirationTime="365" enabled="true" persistentGrantExpirationTimeUnit="d" lastModified="2019-09-28T00:23:26.333Z" bypassApprovalPage="true" restrictScopes="false" jwksUri="" jwks="" clientAuthnType="NONE" enforceOneTimeJWT="false" isRequireSignedRequest="false">
         <urn:Description/>
         <urn:Grant type="authorization_code"/>
+        <urn:Grant type="refresh_token"/>
         <urn:RedirectUri>https://redirect.health.apple.com/HealthProviderLogin/</urn:RedirectUri>
         <urn:RedirectUri>x-argonaut-app://HealthProviderLogin/</urn:RedirectUri>
         <urn:SupplementalInfo key="ALLOW_EXCLUSIVE_SCOPES" value="false"/>
