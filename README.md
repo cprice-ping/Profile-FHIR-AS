@@ -45,7 +45,8 @@ Sample response from the Proxied AS:
 ```
 
 ## PingDirectory
-This PingDirectory instance uses the AnyHealth dataset (https://github.com/cprice-ping/Profile-AnyHealth) and adds a new Consent Definition \ Record.
+This PingDirectory instance uses the AnyHealth dataset (https://github.com/cprice-ping/Profile-AnyHealth) and adds a new Consent Definition \ Record.  
+**Note:** PD needs a publically signed certificate so the Groovy script from PA can connect without SSL errors.
 
 This record contains the list of Proxied accounts that are available, and uses the `subject` claim to represent the one that should be sent in the token response.
 
