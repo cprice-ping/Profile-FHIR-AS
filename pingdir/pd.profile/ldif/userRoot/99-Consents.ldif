@@ -11,9 +11,9 @@ ping-consent-actor: ff99e13b-6ff8-40ef-9ce5-1cc5ef891d3e
 ping-consent-actor-dn: entryUUID=ff99e13b-6ff8-40ef-9ce5-1cc5ef891d3e,ou=Peo
  ple,o=anyhealth.org
 ping-consent-data: { "proxies":[ { "scopes":"Patient/*.read launch/patient o
- ffline_access", "clientID":"APPLE", "proxy":true, "patientID":"11000123455"
+ ffline_access", "clientID":"FHIRAPP", "proxy":true, "patientID":"11000123455"
  , "resources":[ "FHIR resources" ] }, { "scopes":"Patient/*.read launch/pat
- ient offline_access", "clientID":"APPLE", "proxy":false, "patientID":"10001
+ ient offline_access", "clientID":"FHIRAPP", "proxy":false, "patientID":"10001
  23466", "resources":[ "FHIR resources" ] } ] }
 ping-consent-data-text: Allow FHIR App to access data on the SUBJECT record
 ping-consent-purpose-text: Used to allow Roles or Individuals to have access
