@@ -1,16 +1,123 @@
-import java.util.ArrayList
-import java.util.Base64
-import java.io.InputStream
-import java.lang.StringBuffer
-import java.io.BufferedReader
+import java.util.ArrayList;
+import java.util.Base64;
+import java.io.InputStream;
+import java.lang.StringBuffer;
+import java.io.BufferedReader;
 import javax.net.ssl.SSLContext;
-
 import java.io.InputStreamReader;
-
-import com.fasterxml.jackson.databind.JsonNode
-import com.fasterxml.jackson.databind.ObjectMapper
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.apache.http.ssl.SSLContextBuilder;
 import org.apache.http.ssl.SSLContexts;
 import org.apache.http.conn.ssl.SSLConnectionSocketFactory;
 import org.apache.http.client.HttpClient;
-import org.apache.http.impl.client.HttpClients;\nimport org.apache.http.client.methods.HttpGet;\nimport org.apache.http.client.methods.HttpRequestBase;\nimport org.apache.http.HttpResponse;\n\ndef request = exc?.request;\ndef response = exc?.response;\ndef method = request?.method;\nif(!response)\n{\n  request?.header?.removeFields(\"Accept-Encoding\");\n}\nelse\n{\n    def responseHeader = response?.header;\n    def body = response?.getBody();\n    def bodyStr = \"\";\n    if(body != null)\n        bodyStr = new String(body.getContent());\n    def accessToken = getClaimValue(bodyStr, \"access_token\");\n  \n    if(accessToken)\n    {            \n      bodyStr = bodyStr.replace(\"}\",\",\\\"\" + getClaim() + \"\\\":\\\"\" + getValue(accessToken) + \"\\\"}\");\n      response?.setBodyContent(bodyStr.getBytes(\"UTF-8\"));\n      responseHeader?.removeContentEncoding(); \n      // def bigIntContentLength = (bodyStr.getBytes(\"UTF-8\").length)/2;\n      // responseHeader?.setContentLength(bigIntContentLength);\n    }\n}\nanything();\n\nString getClaim()\n{\n    return \"patientId\";\n}\n\nString getValue(String accessToken)\n{\n    def sub = getAccessTokenClaim(accessToken, \"sub\");\n  \n    String username = \"cn=administrator\";\n    String password = \"2FederateM0re\";\n    \n    String encodedBasicAuth = Base64.getEncoder().encodeToString(String.format(\"%s:%s\", username, password).getBytes());\n    \n    String authHeader = \"Basic \" + encodedBasicAuth;\n    \n    String endpoint = \"https://pingdirectory:1443/consent/v1/consents?actor=\" + sub + \"&audience=AnyHealth\";\n  \n  \t// logger.info(\"Endpoint {}\", endpoint);\n    \n    String responseStr = getEndpointResponse(endpoint, \"GET\", authHeader);\n  \n  \t// logger.info(\"Response {}\", responseStr);\n    \n    if(responseStr == null)\n        return \"no-value\";\n    else\n        return getClaimValue(responseStr, \"_embedded.consents.subject\");\n}\nString getAccessTokenClaim(String accessToken, String claim)\n{\n    def accessTokenSplit = accessToken.split(\"\\\\.\");\n    def accessTokenBodyEncoded = accessTokenSplit[1];\n    def accessTokenBody = new String(Base64.getDecoder().decode(accessTokenBodyEncoded));\n  \n    return getClaimValue(accessTokenBody, claim);\n}\n\nString getEndpointResponse(String endpoint, String method, String authHeader) {\n  SSLContextBuilder sslCtx = new SSLContextBuilder();\n  SSLContext sslCtxBuild = sslCtx.build();\n  SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(sslCtxBuild);\n  HttpClient client = HttpClients.custom().setSSLSocketFactory(socketFactory).build();\n  HttpRequestBase request = new HttpGet(endpoint);\n  request.addHeader(\"Authorization\", authHeader);\n  HttpResponse response = client.execute(request);\n  if (response == null) {\n    return null;\n  }\n  BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));\n  StringBuffer result = new StringBuffer();\n  String line = \"\";\n  while ((line = rd.readLine()) != null) {\n    result.append(line);\n  }\n  return result.toString();\n}\n\nString getClaimValue(String responseStr, String jsonPath)\n    {\n        ObjectMapper mapper = new ObjectMapper();       \n        JsonNode resultObject = mapper.readTree(responseStr);\n      \n        logger.info(\"JSONObject: {}\", resultObject);\n        \n        String [] splitJsonPath = jsonPath.split(\"\\\\.\");\n        \n        for(String path : splitJsonPath)\n        {\n            resultObject = resultObject.findPath(path);\n          \tlogger.info(\"Claim: {}\", path);\n          \tlogger.info(\"Value: {}\", resultObject.textValue);\n          \n        }\n        \n        return resultObject.textValue();\n        \n    }
+import org.apache.http.impl.client.HttpClients;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpRequestBase;
+import org.apache.http.HttpResponse;
+
+def request = exc?.request;
+def response = exc?.response;
+def method = request?.method;
+if(!response)
+{
+  request?.header?.removeFields("Accept-Encoding");
+}
+else
+{
+    def responseHeader = response?.header;
+    def body = response?.getBody();
+    def bodyStr = "";
+    if(body != null)
+        bodyStr = new String(body.getContent());
+    def accessToken = getClaimValue(bodyStr, "access_token");
+  
+    if(accessToken)
+    {            
+      bodyStr = bodyStr.replace("}",",\"" + getClaim() + "\":\"" + getValue(accessToken) + "\"}");
+      response?.setBodyContent(bodyStr.getBytes("UTF-8"));
+      responseHeader?.removeContentEncoding(); 
+      // def bigIntContentLength = (bodyStr.getBytes("UTF-8").length)/2;
+      // responseHeader?.setContentLength(bigIntContentLength);
+    }
+}
+anything();
+
+String getClaim()
+{
+    return "patientId";
+}
+
+String getValue(String accessToken)
+{
+    def sub = getAccessTokenClaim(accessToken, "sub");
+  
+    String username = "cn=administrator";
+    String password = "2FederateM0re";
+    
+    String encodedBasicAuth = Base64.getEncoder().encodeToString(String.format("%s:%s", username, password).getBytes());
+    
+    String authHeader = "Basic " + encodedBasicAuth;
+    
+    String endpoint = "${PD_CONSENT_URL}/consent/v1/consents?actor=" + sub + "&audience=AnyHealth";
+  
+  	// logger.info("Endpoint {}", endpoint);
+    
+    String responseStr = getEndpointResponse(endpoint, "GET", authHeader);
+  
+  	// logger.info("Response {}", responseStr);
+    
+    if(responseStr == null)
+        return "no-value";
+    else
+        return getClaimValue(responseStr, "_embedded.consents.subject");
+}
+String getAccessTokenClaim(String accessToken, String claim)
+{
+    def accessTokenSplit = accessToken.split("\\.");
+    def accessTokenBodyEncoded = accessTokenSplit[1];
+    def accessTokenBody = new String(Base64.getDecoder().decode(accessTokenBodyEncoded));
+  
+    return getClaimValue(accessTokenBody, claim);
+}
+
+String getEndpointResponse(String endpoint, String method, String authHeader) {
+  SSLContextBuilder sslCtx = new SSLContextBuilder();
+  SSLContext sslCtxBuild = sslCtx.build();
+  SSLConnectionSocketFactory socketFactory = new SSLConnectionSocketFactory(sslCtxBuild);
+  HttpClient client = HttpClients.custom().setSSLSocketFactory(socketFactory).build();
+  HttpRequestBase request = new HttpGet(endpoint);
+  request.addHeader("Authorization", authHeader);
+  HttpResponse response = client.execute(request);
+  if (response == null) {
+    return null;
+  }
+  BufferedReader rd = new BufferedReader(new InputStreamReader(response.getEntity().getContent()));
+  StringBuffer result = new StringBuffer();
+  String line = "";
+  while ((line = rd.readLine()) != null) {
+    result.append(line);
+  }
+  return result.toString();
+}
+
+String getClaimValue(String responseStr, String jsonPath)
+    {
+        ObjectMapper mapper = new ObjectMapper();       
+        JsonNode resultObject = mapper.readTree(responseStr);
+      
+        logger.info("JSONObject: {}", resultObject);
+        
+        String [] splitJsonPath = jsonPath.split("\\.");
+        
+        for(String path : splitJsonPath)
+        {
+            resultObject = resultObject.findPath(path);
+          	logger.info("Claim: {}", path);
+          	logger.info("Value: {}", resultObject.textValue);
+          
+        }
+        
+        return resultObject.textValue();
+        
+    }
