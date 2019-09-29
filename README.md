@@ -126,4 +126,9 @@ With a ConsentAPI response that looks similar to this:
 A Postman collection for interacting with this Profile can be found here:  
 https://www.getpostman.com/collections/804c9df26fb560e2d9a8
 
+An Environment is needed with the following variables configured:  
+* `as` -- The FQDN \ Port of PingAccess that is proxying PingFed
+
+The environment will be used to store and transfer the AuthZ Code between the calls.
+
 The calls will POST a credential into the AS (via PingAccess) and receive an AuthZ Code. This code can be swapped for a Token set that will show the modifiable token response.
