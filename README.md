@@ -122,4 +122,8 @@ With a ConsentAPI response that looks similar to this:
 }
 ```
 
+### Postman
+A Postman collection for interacting with this Profile can be found here:  
+https://www.getpostman.com/collections/804c9df26fb560e2d9a8
 
+The calls will POST a credential into the AS (via PingAccess) and receive an AuthZ Code. This code can be swapped for a Token set that will show the modifiable token response.
