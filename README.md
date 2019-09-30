@@ -44,8 +44,11 @@ Sample response from the Proxied AS:
 }
 ```
 
+**Note:** Doing this in Groovy is Proof of Concept quality -- it would be better to create a custom Rule using the PingAccess SDK.
+
 ## PingDirectory
 This PingDirectory instance uses the AnyHealth dataset (https://github.com/cprice-ping/Profile-AnyHealth) and adds a new Consent Definition \ Record.  
+
 **Note:** PD needs a publically signed certificate so the Groovy script from PA can connect without SSL errors.
 
 This record contains the list of Proxied accounts that are available, and uses the `subject` claim to represent the one that should be sent in the token response.
