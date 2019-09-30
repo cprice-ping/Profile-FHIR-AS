@@ -20,7 +20,9 @@ OAuth client:
 PERSISTENT_GRANT_LIFETIME has been configured to provide **optional** `refresh_tokens` when the `offline_access` scope is requested:  
 https://support.pingidentity.com/s/document-item?bundleId=pingfederate-93&topicId=yxs1564002993011.html
 
-The OGNL for this can be found in the OAuth APC Mapping
+The OGNL for this can be found in the OAuth APC Mapping:
+
+    `#this.get("context.OAuthScopes").toString().contains("offline_access")?100:0`
 
 ## PingAccess
 Configured to proxy connections to the PingFederate AS endpoints. This is needed to manipulate the response from the AS to simulate a FHIR AS.
@@ -79,7 +81,7 @@ With a ConsentAPI response that looks similar to this:
                 },
                 "id": "44585431-bddc-4c35-acaf-791eb9ba6643",
                 "status": "accepted",
-                "subject": "30006655",
+                "subject": "11000123455",
                 "actor": "ff99e13b-6ff8-40ef-9ce5-1cc5ef891d3e",
                 "actorDN": "entryUUID=ff99e13b-6ff8-40ef-9ce5-1cc5ef891d3e,ou=People,o=anyhealth.org",
                 "audience": "AnyHealth",
@@ -95,7 +97,7 @@ With a ConsentAPI response that looks similar to this:
                     "proxies": [
                         {
                             "scopes": "Patient/*.read launch/patient offline_access",
-                            "clientID": "APPLE",
+                            "clientID": "FHIRAPP",
                             "proxy": true,
                             "patientID": "11000123455",
                             "resources": [
@@ -104,7 +106,7 @@ With a ConsentAPI response that looks similar to this:
                         },
                         {
                             "scopes": "Patient/*.read launch/patient offline_access",
-                            "clientID": "APPLE",
+                            "clientID": "FHIRAPP",
                             "proxy": false,
                             "patientID": "1000123466",
                             "resources": [
