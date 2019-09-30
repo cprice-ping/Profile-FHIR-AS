@@ -18,4 +18,4 @@ ping-consent-data: { "proxies":[ { "scopes":"Patient/*.read launch/patient o
 ping-consent-data-text: Allow FHIR App to access data on the SUBJECT record
 ping-consent-purpose-text: Used to allow Roles or Individuals to have access
   to all or specific elements of the SUBJECT medical record
-ping-consent-subject: 30006655
+ping-consent-subject: 11000123455
