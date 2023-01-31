@@ -60,7 +60,7 @@ This record contains the list of Proxied accounts that are available, and uses t
 During the Application authorization, the Consent page should list the proxies and stamp the selected one to the record. PingAccess will extract the `subject` from that record based on the `sub` of the `access_token` and present it in the response.
 
 The call made looks like this:  
-https://{{pingdir}}/consent/v1/consents?actor={{sub}}&definition=FHIRApp&audience=AnyHealth
+`https://{{pingdir}}/consent/v1/consents?actor={{sub}}&definition=FHIRApp&audience=AnyHealth`
 
 With a ConsentAPI response that looks similar to this:
 
