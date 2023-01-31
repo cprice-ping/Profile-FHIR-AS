@@ -22,7 +22,9 @@ https://support.pingidentity.com/s/document-item?bundleId=pingfederate-93&topicI
 
 The OGNL for this can be found in the OAuth APC Mapping:
 
-    `#this.get("context.OAuthScopes").toString().contains("offline_access")?100:0`
+```ognl
+#this.get("context.OAuthScopes").toString().contains("offline_access")?100:0
+```
 
 ## PingAccess
 Configured to proxy connections to the PingFederate AS endpoints. This is needed to manipulate the response from the AS to simulate a FHIR AS.
