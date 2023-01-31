@@ -27,8 +27,8 @@ The OGNL for this can be found in the OAuth APC Mapping:
 ## PingAccess
 Configured to proxy connections to the PingFederate AS endpoints. This is needed to manipulate the response from the AS to simulate a FHIR AS.
 
-* https://{{pa}}/as/authorization.oauth2 (Used to request an AuthZ Code)
-* https://{{pa}}/as/token.oauth2 (Used to request a token)
+* `https://{{pa}}/as/authorization.oauth2` (Used to request an AuthZ Code)
+* `https://{{pa}}/as/token.oauth2` (Used to request a token)
 
 There is a Content Rewrite rule that is applied to the Token endpoint.
 
