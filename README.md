@@ -14,7 +14,7 @@ Configured with the FHIR Scopes:
 * `launch/patient`
 
 OAuth client:  
-`clinet_id` == `FHIRApp`  
+`client_id` == `FHIRApp`  
 `redirect_uri` == https://redirect.health.com/HealthProviderLogin/
 
 PERSISTENT_GRANT_LIFETIME has been configured to provide **optional** `refresh_tokens` when the `offline_access` scope is requested:  
